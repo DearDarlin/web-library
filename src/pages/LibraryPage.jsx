@@ -33,7 +33,6 @@ const LibraryPage = () => {
 
     const fetchLibrary = async () => {
         try {
-            // Отправляем фильтры как Query параметры
             const response = await axios.get(API_BASE_URL, { params: filters });
             setLibraryData(response.data);
         } catch (error) {
@@ -43,7 +42,7 @@ const LibraryPage = () => {
 
     useEffect(() => {
         fetchLibrary();
-    }, [filters]); // Перезагружать при изменении фильтров
+    }, [filters]); 
 
     const handleDeleteAuthor = async (id) => {
         if (window.confirm("Удалить автора?")) {
