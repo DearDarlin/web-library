@@ -5,25 +5,22 @@ const API_BASE_URL = 'https://localhost:7207';
 
 const BookForm = () => {
     const [book, setBook] = useState({
-        title: '',
-        isbn: '',
-        publishYear: '',
-        price: '',
-        authorId: ''
+        Title: '',
+        ISBN: '',
+        PublishYear: '',
+        Price: '',
+        AuthorId: ''
     });
 
-    // Состояние для хранения списка авторов
     const [authors, setAuthors] = useState([]);
 
-    // Загружаем список авторов при загрузке компонента
     useEffect(() => {
         const fetchAuthors = async () => {
             try {
-                // Используем GET запрос из вашего Swagger
                 const response = await axios.get(`${API_BASE_URL}/api/Authors/authors`);
-                setAuthors(response.data); // Предполагаем, что API возвращает массив объектов авторов
+                setAuthors(response.data); 
             } catch (error) {
-                console.error("Ошибка при загрузке авторов:", error);
+                console.error("Помилка при завантаженні авторів:", error);
             }
         };
         fetchAuthors();
@@ -37,29 +34,29 @@ const BookForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${API_BASE_URL}/api/Authors/book`, book);
-            alert(response.data.message || "Book added successfully!");
-            setBook({ title: '', isbn: '', publishYear: '', price: '', authorId: '' });
+            alert(response.data.message);
+            setBook({ Title: '', ISBN: '', PublishYear: '', Price: '', AuthorId: '' });
         } catch (error) {
-            alert(error.response?.data?.message || "Error adding book");
+            alert(error.response?.data?.message);
         }
     };
 
     return (
         <form onSubmit={handleSubmit} style={styles.form}>
             <h3>Books</h3>
-            <input style={styles.input} name="title" placeholder="Title book" value={book.title} onChange={handleChange} required />
-            <input style={styles.input} name="isbn" placeholder="ISBN" value={book.isbn} onChange={handleChange} required />
-            <input style={styles.input} type="number" name="publishYear" placeholder="Publish Year" value={book.publishYear} onChange={handleChange} required />
-            <input style={styles.input} type="number" name="price" placeholder="Price" value={book.price} onChange={handleChange} required />
+            <input style={styles.input} name="Title" minLength="2" placeholder="Title book" value={book.Title} onChange={handleChange} required />
+            <input style={styles.input} name="ISBN" placeholder="ISBN (978-XXXXXXXXXX)" value={book.ISBN} onChange={handleChange} required pattern="978-\d{10}" title="Формат має бути 978- і 10 цифр"/>
+            <input style={styles.input} type="number" min="1450" max="2100" name="PublishYear" placeholder="Publish Year" value={book.PublishYear} onChange={handleChange} required />
+            <input style={styles.input} type="number" min="0" max="100000" name="Price" placeholder="Price" value={book.Price} onChange={handleChange} required />
 
             <select
                 style={styles.input} 
-                name="authorId" 
-                value={book.authorId} 
+                name="AuthorId" 
+                value={book.AuthorId} 
                 onChange={handleChange} 
                 required
             >
-                <option value="">Select Author</option>
+                <option value="">-Select Author-</option>
                 {authors.map((author) => (
                     <option key={author.id} value={author.id}>
                         {author.fullName} 
@@ -67,7 +64,7 @@ const BookForm = () => {
                 ))}
             </select>
 
-            <button style={styles.button} type="submit">Add Book</button>
+            <button style={styles.button} type="submit">Додати</button>
         </form>
     );
 };
