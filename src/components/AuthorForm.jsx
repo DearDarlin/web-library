@@ -5,9 +5,9 @@ const API_BASE_URL = 'https://localhost:7207';
 
 const AuthorForm = () => {
     const [author, setAuthor] = useState({
-        firstName: '',
-        lastName: '',
-        birthDate: ''
+        FirstName: '',
+        LastName: '',
+        BirthDate: ''
     });
 
     const handleChange = (e) => {
@@ -18,20 +18,20 @@ const AuthorForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${API_BASE_URL}/api/Authors/author`, author);
-            alert(response.data.message || "Автор успешно добавлен!");
-            setAuthor({ firstName: '', lastName: '', birthDate: '' }); // Очистка
+            alert(response.data.message);
+            setAuthor({ FirstName: '', LastName: '', BirthDate: '' }); 
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || "Ошибка при добавлении автора");
+            alert(error.response?.data?.message);
         }
     };
 
     return (
         <form onSubmit={handleSubmit} style={styles.form}>
-            <h3>Author Registration</h3>
-            <input style={styles.input} name="firstName" placeholder="Ім'я" value={author.firstName} onChange={handleChange} required />
-            <input style={styles.input} name="lastName" placeholder="Прізвище" value={author.lastName} onChange={handleChange} required />
-            <input style={styles.input} type="date" name="birthDate" value={author.birthDate} onChange={handleChange} required />
+            <h3>Додати Автора</h3>
+            <input style={styles.input} name="FirstName" placeholder="Ім'я" value={author.FirstName} onChange={handleChange} required />
+            <input style={styles.input} name="LastName" placeholder="Прізвище" value={author.LastName} onChange={handleChange} required />
+            <input style={styles.input} type="date" name="BirthDate" value={author.BirthDate} onChange={handleChange} required />
             <button style={styles.button} type="submit">Зареєструвати</button>
         </form>
     );
