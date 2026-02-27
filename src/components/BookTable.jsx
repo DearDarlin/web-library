@@ -58,7 +58,7 @@ const BookTable = ({ books, onDelete }) => (
                         <td style={tableStyles.td}>{book.isbn}</td>
                         <td style={tableStyles.td}>{book.publishYear}</td>
                         <td style={tableStyles.td}>
-                            <button onClick={() => onDelete(book.id)} style={styles.deleteBtn}>Удалить</button>
+                            <button onClick={() => onDelete(book.id)} style={tableStyles.deleteBtn}>Видалити</button>
                         </td>
                     </tr>
                 ))}
@@ -67,10 +67,5 @@ const BookTable = ({ books, onDelete }) => (
     </div>
 );
 
-const styles = {
-    container: { flex: 2 },
-    table: { width: '100%', borderCollapse: 'collapse' },
-    deleteBtn: { backgroundColor: '#ff4d4d', color: 'white', border: 'none', cursor: 'pointer' }
-};
 
 export default BookTable;

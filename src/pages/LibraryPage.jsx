@@ -19,7 +19,6 @@ const filterStyles = {
     }
 };
 
-
 const API_BASE_URL = 'https://localhost:7207/api/Library';
 
 const LibraryPage = () => {
@@ -36,7 +35,7 @@ const LibraryPage = () => {
             const response = await axios.get(API_BASE_URL, { params: filters });
             setLibraryData(response.data);
         } catch (error) {
-            console.error("Ошибка загрузки данных", error);
+            console.error("Помилка завантаження даних", error);
         }
     };
 
@@ -45,7 +44,7 @@ const LibraryPage = () => {
     }, [filters]); 
 
     const handleDeleteAuthor = async (id) => {
-        if (window.confirm("Удалить автора?")) {
+        if (window.confirm("Видалити автора?")) {
             await axios.delete(`${API_BASE_URL}/author/${id}`);
             fetchLibrary();
         }
@@ -58,7 +57,7 @@ const LibraryPage = () => {
 
     return (
         <div style={{ padding: '20px' }}>
-            <h2>Библиотека</h2>
+            <h2>Бібліотека</h2>
             
             <div style={styles.filterBar}>
                 <input style={filterStyles.input}
@@ -66,17 +65,20 @@ const LibraryPage = () => {
                     onChange={(e) => setFilters({...filters, searchTitle: e.target.value})} 
                 />
                 <input style={filterStyles.input}
-                    type="number" placeholder="Год" 
+                    type="number" placeholder="Рік" 
                     onChange={(e) => setFilters({...filters, searchYear: e.target.value})} 
                 />
                 <input style={filterStyles.input}
-                    placeholder="Имя автора" 
+                    placeholder="Ім'я автора" 
                     onChange={(e) => setFilters({...filters, searchAuthorName: e.target.value})} 
                 />
-                <select style={filterStyles.select} onChange={(e) => setFilters({...filters, sortOrder: e.target.value})}>
-                    <option value="">Без сортировки</option>
-                    <option value="title_asc">Заголовок (А-Я)</option>
-                    <option value="year_desc">Сначала новые</option>
+                <select style={filterStyles.select} 
+                onChange={(e) => setFilters({...filters, sortOrder: e.target.value})}>
+                    <option value="">Без сортування</option>
+                    <option value="title_asc">Сортування (А-Я)</option>
+                    <option value="title_desc">Сортування (Я-А)</option>
+                    <option value="title_asc">Спочатку старі</option>
+                    <option value="year_desc">Спочатку нові</option>
                 </select>
             </div>
 
