@@ -45,13 +45,29 @@ const LibraryPage = () => {
 
     const handleDeleteAuthor = async (id) => {
         if (window.confirm("Видалити автора?")) {
-            await axios.delete(`${API_BASE_URL}/author/${id}`);
-            fetchLibrary();
+            try {
+                const response = await axios.delete(`${API_BASE_URL}/author/${id}`);
+                alert(response.data.message)
+                fetchLibrary();
+            }
+            catch(error){
+                    const serverMessage = error.response?.data?.message;
+
+                    if(serverMessage){
+                        alert(serverMessage);
+                    }
+                    else{
+                        alert("Виникла помилка при видалення автора")
+                    }
+                    console.error(error);
+            }
+            
         }
     };
 
     const handleDeleteBook = async (id) => {
-        await axios.delete(`${API_BASE_URL}/book/${id}`);
+        const response = await axios.delete(`${API_BASE_URL}/book/${id}`);
+        alert(response.data.message);
         fetchLibrary();
     };
 
