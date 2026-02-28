@@ -28,7 +28,7 @@ const AuthorForm = () => {
 
     return (
         <form onSubmit={handleSubmit} style={styles.form}>
-            <h3>Додати Автора</h3>
+            <h2 style={{textAlign:"center"}}>Додати Автора</h2>
             <input style={styles.input} name="FirstName" placeholder="Ім'я" value={author.FirstName} onChange={handleChange} required />
             <input style={styles.input} name="LastName" placeholder="Прізвище" value={author.LastName} onChange={handleChange} required />
             <input style={styles.input} type="date" name="BirthDate" value={author.BirthDate} onChange={handleChange} required />
@@ -38,9 +38,9 @@ const AuthorForm = () => {
 };
 
 const styles = {
-    form: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' },
-    input: { padding: '8px', borderRadius: '4px', border: '1px solid #ddd' },
-    button: { padding: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }
+    form: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px',  borderRadius: '8px' },
+    input: { padding: '8px', borderRadius: '10px', border: '4px solid #f9c0e7ff' },
+    button: { padding: '10px', backgroundColor: '#d37dd6ff', color: 'white', border: 'none', borderRadius: '20px' }
 };
 
 export default AuthorForm;
