@@ -48,6 +48,7 @@ const BookTable = ({ books, onDelete }) => (
                     <th style={tableStyles.th}>Назва</th>
                     <th style={tableStyles.th}>ISBN</th>
                     <th style={tableStyles.th}>Год</th>
+                    <th style={tableStyles.th}>Ціна</th>
                     <th style={tableStyles.th}>Дії</th>
                 </tr>
             </thead>
@@ -57,6 +58,7 @@ const BookTable = ({ books, onDelete }) => (
                         <td style={tableStyles.td}>{book.title}</td>
                         <td style={tableStyles.td}>{book.isbn}</td>
                         <td style={tableStyles.td}>{book.publishYear}</td>
+                        <td style={tableStyles.td}>{book.price}</td>
                         <td style={tableStyles.td}>
                             <button onClick={() => onDelete(book.id)} style={tableStyles.deleteBtn}>Видалити</button>
                         </td>

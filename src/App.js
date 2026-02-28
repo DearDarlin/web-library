@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import RegistrationPage from './pages/RegistrationPage';
 import LibraryPage from './pages/LibraryPage';
+import AuthorDetailsPage from './pages/AuthorDetailsPage';
 
 function App() {
   const navStyle = {
@@ -48,6 +49,7 @@ function App() {
       <div style={{ padding: '30px', maxWidth: '1000px', margin: '0 auto' }}>
         <Routes>
           <Route path="/" element={<RegistrationPage />} />
+          <Route path="/author/:id" element={<AuthorDetailsPage />} />
           <Route path="/library" element={<LibraryPage />} />
         </Routes>
       </div>

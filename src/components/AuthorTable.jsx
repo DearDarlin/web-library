@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 const tableStyles = {
     container: {
         padding: '10px',
@@ -34,10 +35,22 @@ const tableStyles = {
         cursor: 'pointer',
         fontSize: '12px',
         transition: 'background 0.3s'
+    },
+    detailsBtn: {
+        padding: '6px 12px',
+        backgroundColor: '#007bff',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontSize: '12px',
+        marginRight: '5px'
     }
 };
-const AuthorTable = ({ authors, onDelete }) => (
-    <div style={tableStyles.container}>
+const AuthorTable = ({ authors, onDelete }) => {
+    const navigate = useNavigate();
+    return (
+        <div style={tableStyles.container}>
         <h3 style={{
             color: '#333', 
             borderBottom: '2px solid #007bff', 
@@ -56,6 +69,12 @@ const AuthorTable = ({ authors, onDelete }) => (
                         <td style={tableStyles.td}>{author.firstName} {author.lastName}</td>
                         <td style={tableStyles.td}>{new Date(author.birthDate).toLocaleDateString()}</td>
                         <td style={tableStyles.td}>
+                            <button 
+                                    onClick={() => navigate(`/author/${author.id}`)} 
+                                    style={tableStyles.detailsBtn}
+                                >
+                                    Деталі
+                                </button>
                             <button onClick={() => onDelete(author.id)} 
                             style={tableStyles.deleteBtn}>Видалити</button>
                         </td>
@@ -64,7 +83,9 @@ const AuthorTable = ({ authors, onDelete }) => (
             </tbody>
         </table>
     </div>
-);
+    )
+    
+};
 
 
 export default AuthorTable;
