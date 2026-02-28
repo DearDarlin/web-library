@@ -43,7 +43,7 @@ const BookForm = () => {
 
     return (
         <form onSubmit={handleSubmit} style={styles.form}>
-            <h3>Books</h3>
+            <h2 style={{textAlign:"center"}}>Додати книгу</h2>
             <input style={styles.input} name="Title" minLength="2" placeholder="Title book" value={book.Title} onChange={handleChange} required />
             <input style={styles.input} name="ISBN" placeholder="ISBN (978-XXXXXXXXXX)" value={book.ISBN} onChange={handleChange} required pattern="978-\d{10}" title="Формат має бути 978- і 10 цифр"/>
             <input style={styles.input} type="number" min="1450" max="2100" name="PublishYear" placeholder="Publish Year" value={book.PublishYear} onChange={handleChange} required />
@@ -70,9 +70,9 @@ const BookForm = () => {
 };
 
 const styles = {
-    form: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' },
-    input: { padding: '8px', borderRadius: '4px', border: '1px solid #ddd', backgroundColor: 'white' },
-    button: { padding: '10px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }
+    form: { display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px', borderRadius: '8px' },
+    input: { padding: '8px', borderRadius: '10px', border: '4px solid #b4dbf2ff', backgroundColor: 'white' },
+    button: { padding: '10px', backgroundColor: '#3b7bb2ff', color: 'white', border: 'none', borderRadius: '20px' }
 };
 
 export default BookForm;
